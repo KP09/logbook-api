@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  port_of_departure: MyString
+  port_of_destination: MyString
+  departure_date: 2017-10-17 15:18:57
+  arrival_date: 2017-10-17 15:18:57
+  description: MyText
+  miles: 1.5
+  hours: 1.5
+  night_hours: 1.5
+  role: MyString
+  overnight: false
+  tidal: false
+  ocean_passage: false
+
+two:
+  port_of_departure: MyString
+  port_of_destination: MyString
+  departure_date: 2017-10-17 15:18:57
+  arrival_date: 2017-10-17 15:18:57
+  description: MyText
+  miles: 1.5
+  hours: 1.5
+  night_hours: 1.5
+  role: MyString
+  overnight: false
+  tidal: false
+  ocean_passage: false
