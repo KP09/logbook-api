@@ -1,3 +1,7 @@
+puts "Destroying previous passages"
+Passage.destroy_all
+
+puts "Seeding new passages..."
 10.times do
   Passage.create!({
     departure_port: "Some departure port",
@@ -11,6 +15,7 @@
     role: "Crew",
     overnight: true,
     tidal: true,
-    ocean_passage: false
+    ocean_passage: true
   })
 end
+puts "Finished seeding passages"
