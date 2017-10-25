@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171017141857) do
+ActiveRecord::Schema.define(version: 20171025183742) do
 
   create_table "passages", force: :cascade do |t|
     t.string "departure_port"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 20171017141857) do
     t.boolean "overnight"
     t.boolean "tidal"
     t.boolean "ocean_passage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

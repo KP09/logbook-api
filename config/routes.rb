@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :passages, only: [:index, :create]
+      resources :users, only: :create do
+        collection do
+          post 'confirm'
+          post 'login'
+        end
+      end
     end
   end
 end

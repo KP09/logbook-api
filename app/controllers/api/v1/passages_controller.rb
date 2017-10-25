@@ -1,5 +1,7 @@
 module Api::V1
   class PassagesController < ApplicationController
+    before_action :authenticate_request!
+
     def index
       @passages = Passage.order("created_at DESC")
       render json: @passages
