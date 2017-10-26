@@ -8,6 +8,9 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, case_sensitive: true
   validates_format_of :email, with: /@/ # TO DO: better regex here
 
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+
   def confirmation_token_valid?
     (self.confirmation_sent_at + 30.days) > Time.now.utc
   end
