@@ -1,6 +1,6 @@
 module Api::V1
   class UsersController < ApplicationController
-    before_action :authenticate_request!, except: [:create, :confirm, :login]
+    before_action :authenticate_request!, except: [:create, :confirm, :login, :check_email_used]
 
     def create
       user = User.new(user_params)
@@ -39,6 +39,15 @@ module Api::V1
         end
       else
         render json: {error: 'Invalid username / password'}, status: :unauthorized
+      end
+    end
+
+    def check_email_used
+      user = User.find_by(email: params[:email].to_s.downcase)
+      if user
+        render json: {email_in_use: true}
+      else
+        render json: {email_in_use: false}
       end
     end
 
