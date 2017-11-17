@@ -1,12 +1,18 @@
 class User < ApplicationRecord
+  include ActiveModel::Dirty
   has_secure_password
 
-  validate :validate_email, :validate_password, :validate_password_confirmation
-  before_save :downcase_email
-  before_create :generate_confirmation_instructions
-
+  validate :validate_email, if: :email_changed?
+  validate :validate_password, if: :password_digest_changed?
+  validate :validate_password_confirmation, on: :create
   validates_presence_of :first_name, message: "First name is required"
   validates_presence_of :last_name, message: "Last name is required"
+
+  before_save :downcase_email
+
+  before_create :generate_confirmation_details
+
+  after_create :send_welcome_email
 
   def confirmation_token_valid?
     (self.confirmation_sent_at + 30.days) > Time.now.utc
@@ -15,7 +21,7 @@ class User < ApplicationRecord
   def mark_as_confirmed!
     self.confirmation_token = nil
     self.confirmed_at = Time.now.utc
-    save
+    self.save
   end
 
   private
@@ -24,7 +30,6 @@ class User < ApplicationRecord
   self.email = self.email.delete(' ').downcase
   end
 
-  # Why: so there is only ever one email error message
   def validate_email
     if email.blank?
       errors.add(:email, "Email is required")
@@ -53,8 +58,12 @@ class User < ApplicationRecord
     end
   end
 
-  def generate_confirmation_instructions
+  def generate_confirmation_details
     self.confirmation_token = SecureRandom.hex(10)
     self.confirmation_sent_at = Time.now.utc
+  end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
   end
 end
