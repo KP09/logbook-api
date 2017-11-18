@@ -35,10 +35,10 @@ module Api::V1
           auth_token = JsonWebToken.encode({user_id: user.id})
           render json: {auth_token: auth_token}, status: :ok
         else
-          render json: {error: 'Email not verified' }, status: :unauthorized
+          render json: {error: 'Please verify your email address' }, status: :unauthorized
         end
       else
-        render json: {error: 'Invalid username / password'}, status: :unauthorized
+        render json: {error: 'Invalid username and password combination'}, status: :unauthorized
       end
     end
 
