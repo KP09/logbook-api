@@ -30,9 +30,12 @@ module LogbookApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    # Always serve via HTTPS
+    config.force_ssl = true
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:3000'
+        origins 'https://localhost:3000'
         resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
       end
     end

@@ -1,7 +1,7 @@
 require 'jsonwebtoken'
 module Api::V1
   class ApplicationController < ActionController::API
-    protect_from_forgery with: :exception
+    # protect_from_forgery with: :exception
     protected
     # Validates the token and user and sets the @current_user scope
     def authenticate_request!
