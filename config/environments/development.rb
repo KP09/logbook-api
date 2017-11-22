@@ -10,7 +10,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Always serve via HTTPS
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Show full error reports.
   config.consider_all_requests_local = true

@@ -31,12 +31,18 @@ module LogbookApi
     config.api_only = true
 
     # Always serve via HTTPS
-    config.force_ssl = true
+    # config.force_ssl = true
 
-    config.middleware.insert_before 0, Rack::Cors do
+    # config.action_dispatch.default_headers = {
+    #   'Access-Control-Allow-Origin' => '*',
+    #   'Access-Control-Request-Method' => %w{GET POST PUT DELETE OPTIONS}.join(","),
+    #   'Access-Control-Allow-Headers:' => 'Origin, X-Requested-With, Content-Type, Accept'
+    # }
+
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
       allow do
-        origins 'https://localhost:3000'
-        resource '*', :headers => :any, :methods => [:get, :post, :put, :delete, :options]
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
   end

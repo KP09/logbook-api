@@ -1,6 +1,17 @@
 module Api::V1
   class UsersController < ApplicationController
-    before_action :authenticate_request!, except: [:create, :confirm, :login, :check_email_used]
+    before_action :authenticate_request!, except: [
+      :create,
+      :confirm,
+      :login,
+      :check_email_used,
+      :api_test
+    ]
+
+    def api_test
+      puts "API test request processing..."
+      render json: {status: 'Api working and accessible'}, status: :ok
+    end
 
     def create
       user = User.new(user_params)
