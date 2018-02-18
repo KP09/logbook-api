@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026101945) do
+ActiveRecord::Schema.define(version: 20171127093014) do
 
   create_table "passages", force: :cascade do |t|
     t.string "departure_port"
     t.string "arrival_port"
-    t.datetime "departure_date"
-    t.datetime "arrival_date"
+    t.datetime "departure_date_time"
+    t.datetime "arrival_date_time"
     t.text "description"
     t.float "miles"
     t.float "hours"

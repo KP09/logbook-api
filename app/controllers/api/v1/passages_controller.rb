@@ -8,16 +8,31 @@ module Api::V1
     end
 
     def create
-      @passage = Passage.create!(passage_params)
-      render json: @passage
+      @passage = Passage.new(passage_params)
+      if @passage.save
+        render json: @passage
+      else
+        render json: { errors: @passage.errors }, status: :bad_request
+      end
     end
 
     private
 
     def passage_params
-      params.require(:passage).permit(:departure_port,
-        :arrival_port, :departure_date, :arrival_date, :description, :miles,
-        :hours, :night_hours, :role, :overnight, :tidal, :ocean_passage)
+      params.require(:passage).permit(
+        :departure_port,
+        :arrival_port,
+        :departure_date_time,
+        :arrival_date_time,
+        :description,
+        :miles,
+        :hours,
+        :night_hours,
+        :role,
+        :overnight,
+        :tidal,
+        :ocean_passage
+      )
     end
   end
 end
