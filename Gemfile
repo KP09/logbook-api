@@ -29,7 +29,10 @@ gem 'jwt'
 gem 'rack-cors'
 
 # Thin for serving with SSL
-gem 'thin'
+# gem 'thin'
+
+# GraphQL for a single API endpoint
+gem 'graphql'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :passages
+
   include ActiveModel::Dirty
   has_secure_password
 

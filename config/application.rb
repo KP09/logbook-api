@@ -18,6 +18,9 @@ Bundler.require(*Rails.groups)
 
 module LogbookApi
   class Application < Rails::Application
+    # Include the types folder (for GraphQL) in the autoload of Rails
+    config.autoload_paths << Rails.root.join("app", "graphql")
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
